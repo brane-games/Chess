@@ -252,14 +252,14 @@ public partial class ChessBoard
         }
     }
 
-    private readonly AutoEndgameRules autoEndgameRules = AutoEndgameRules.None;
+    private AutoEndgameRules autoEndgameRules = AutoEndgameRules.None;
     /// <summary>
     /// This property keeps track of auto-draw (endgame) rules that will be used to check for endgame
     /// </summary>
     public AutoEndgameRules AutoEndgameRules
     {
         get => autoEndgameRules;
-        init
+        set
         {
             autoEndgameRules = value;
             endGameProvider.UpdateRules();
@@ -375,6 +375,31 @@ public partial class ChessBoard
         headers.Remove(name);
     }
 
+    /// <summary>
+    /// Returns material count of current state on the board
+    /// </summary>
+    /// <returns></returns>
+    public int GetBoardMaterialCount()
+    {
+        var whiteCount = 0;
+        var blackCount = 0;
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                if (pieces[i, j] is not null)
+                {
+                    if (pieces[i, j]?.Color == PieceColor.White)
+                        whiteCount = whiteCount + pieces[i, j]!.Type.Value;
+                    else if (pieces[i, j]?.Color == PieceColor.Black)
+                        blackCount = blackCount + pieces[i, j]!.Type.Value;
+                }
+            }
+        }
+
+        return whiteCount - blackCount;
+    }
+
     // Temporary disabled
     /// <summary>
     /// Puts given piece on given position<br/>
@@ -389,7 +414,7 @@ public partial class ChessBoard
     /// Removes a piece on given position from board<br/>
     /// Warning! Checked state and end game state is not being updated
     /// </summary>
-    private void Remove(Position position)
+    public void Remove(Position position)
     {
         pieces[position.Y, position.X] = null;
     }

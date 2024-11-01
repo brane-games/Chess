@@ -55,6 +55,11 @@ public class Move
     public bool IsMate { get; internal set; }
 
     /// <summary>
+    /// Custom stuff!
+    /// </summary>
+    public bool IsAmbiguous { get; set; }
+
+    /// <summary>
     /// Move in SAN Notation<br/>
     /// -> Use board.MoveToSan() to get san string for this move according to your board positions
     /// </summary>
