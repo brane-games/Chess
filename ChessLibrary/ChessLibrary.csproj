@@ -10,6 +10,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="README_NUGET.md" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="..\knight.png">
 		  <Pack>True</Pack>
 		  <PackagePath>\</PackagePath>
@@ -19,24 +23,24 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+    <None Include="README_NUGET.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Ardalis.SmartEnum" Version="2.0.1" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="README_NUGET.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
 	<PropertyGroup>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DebugType>embedded</DebugType>
 		<OutputType>Library</OutputType>
 		<RootNamespace>Chess</RootNamespace>
 		<Authors>Geras1mleo</Authors>
+    <NoPack>true</NoPack>
+    <PackageReadmeFile>README_NUGET.md</PackageReadmeFile>
 		<Copyright>Copyright (c) 2024 Geras1mleo</Copyright>
 		<PackageProjectUrl>https://www.nuget.org/packages/Gera.Chess/</PackageProjectUrl>
 		<PackageReadmeFile>README_NUGET.md</PackageReadmeFile>
